@@ -25,12 +25,4 @@ public class ObstacleMovement : MonoBehaviour
             Destroy(this.gameObject);
         }
     }
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.tag == "Player")
-        {
-            SceneManager.LoadScene("LoseScene");
-        }
-    }
 }
