@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ObstacleMovement : MonoBehaviour
 {
@@ -15,15 +16,21 @@ public class ObstacleMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.Translate(new Vector3(xSpeed*Time.deltaTime, 0, 0f));
+        transform.Translate(new Vector3(xSpeed * Time.deltaTime, 0, 0f));
+
         if (transform.position.x < -10)
         {
+            Player.player.UpdateScore();
+
             Destroy(this.gameObject);
         }
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        
+        if (collision.gameObject.tag == "Player")
+        {
+            SceneManager.LoadScene("LoseScene");
+        }
     }
 }
